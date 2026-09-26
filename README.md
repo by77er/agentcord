@@ -8,18 +8,9 @@ Each agent is a [pi](https://github.com/earendil-works/pi-mono) process in RPC m
 pi supplies the model providers, auth, coding tools, compaction and per-agent transcripts, and
 agentcord adds the multi-agent layer:
 
-```
- agentcord-tui ──HTTP/WS──┐
-                          ▼
-            ┌──────────── agentcord daemon (Rust) ────────────┐
- CLI ──────▶│ agents · names · topics · subscriptions · queues │◀── broker.sock ── pi extension tools
-            │ events.jsonl + logs/*.jsonl (fsync'd, replayed)  │
-            └───────┬───────────────────────┬─────────────────┘
-          stdin/stdout JSONL (RPC)   stdin/stdout JSONL (RPC)
-                ┌───▼───┐               ┌───▼───┐
-                │ pi a-1│ ...           │ pi a-2│   each with its own pi session file
-                └───────┘               └───────┘
-```
+<p align="center">
+  <img src="docs/architecture.svg" alt="agentcord architecture: clients talk to the daemon over HTTP/WebSocket or a Unix socket; the broker routes messages between pi agents running as RPC subprocesses and persists everything to JSONL" width="100%">
+</p>
 
 Workspace: `crates/agentcord` (daemon + CLI), `crates/tui` (`agentcord-tui`), `crates/discord`
 (`agentcord-discord`, a standalone Discord bridge), `crates/proto` (shared wire types).

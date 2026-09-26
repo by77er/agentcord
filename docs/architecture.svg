@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 590" width="960" height="590" role="img" aria-labelledby="title desc">
+  <title id="title">agentcord architecture</title>
+  <desc id="desc">Clients (Discord bridge, TUI, scripts, CLI) talk to the agentcord daemon over an HTTP/WebSocket API or a Unix socket. The daemon's broker routes messages between pi agents, which run as RPC subprocesses and call back into the broker socket through the agentcord extension. All state is appended to JSONL files in the session directory.</desc>
+  <style>
+    .t { fill: #1f2328; font: 600 13px -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .s { fill: #59636e; font: 400 11.5px -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .m { fill: #59636e; font: 400 11.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .h { fill: #0969da; font: 700 14px -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .l { fill: #0969da; font: 500 11px -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .box { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1; }
+    .ext { fill: none; stroke: #8c959f; stroke-width: 1; stroke-dasharray: 4 3; }
+    .core { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+    .daemon { fill: #0969da; fill-opacity: 0.04; stroke: #0969da; stroke-width: 1.5; }
+    .arrow { fill: none; stroke: #0969da; stroke-width: 1.5; }
+    .tool { fill: none; stroke: #8250df; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .tl { fill: #8250df; font: 500 11px -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .head { fill: #0969da; }
+    .toolhead { fill: #8250df; }
+    @media (prefers-color-scheme: dark) {
+      .t { fill: #e6edf3; }
+      .s, .m { fill: #9198a1; }
+      .h, .l { fill: #4493f8; }
+      .box { fill: #151b23; stroke: #3d444d; }
+      .ext { stroke: #656c76; }
+      .core { fill: #0c2d6b; stroke: #1f6feb; }
+      .daemon { fill: #1f6feb; fill-opacity: 0.06; stroke: #4493f8; }
+      .arrow { stroke: #4493f8; }
+      .head { fill: #4493f8; }
+      .tool { stroke: #ab7df8; }
+      .tl { fill: #ab7df8; }
+      .toolhead { fill: #ab7df8; }
+    }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="head" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="toolhead" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+
+  <!-- clients -->
+  <rect class="ext" x="20" y="24" width="140" height="60" rx="8"/>
+  <text class="t" x="90" y="50" text-anchor="middle">Discord channel</text>
+  <text class="s" x="90" y="68" text-anchor="middle">humans · webhooks</text>
+
+  <rect class="box" x="190" y="24" width="150" height="60" rx="8"/>
+  <text class="t" x="265" y="50" text-anchor="middle">agentcord-discord</text>
+  <text class="s" x="265" y="68" text-anchor="middle">mirrors one topic</text>
+
+  <rect class="box" x="360" y="24" width="150" height="60" rx="8"/>
+  <text class="t" x="435" y="50" text-anchor="middle">agentcord-tui</text>
+  <text class="s" x="435" y="68" text-anchor="middle">live views · as @human</text>
+
+  <rect class="box" x="530" y="24" width="120" height="60" rx="8"/>
+  <text class="t" x="590" y="50" text-anchor="middle">curl / scripts</text>
+  <text class="s" x="590" y="68" text-anchor="middle">HTTP · ws://</text>
+
+  <rect class="box" x="670" y="24" width="140" height="60" rx="8"/>
+  <text class="t" x="740" y="50" text-anchor="middle">agentcord CLI</text>
+  <text class="s" x="740" y="68" text-anchor="middle">serve · spawn · send</text>
+
+  <path class="arrow" d="M162,54 L188,54" marker-start="url(#a)" marker-end="url(#a)"/>
+
+  <!-- daemon -->
+  <rect class="daemon" x="20" y="124" width="920" height="298" rx="12"/>
+  <text class="h" x="38" y="150">agentcord daemon</text>
+
+  <rect class="core" x="190" y="162" width="460" height="46" rx="8"/>
+  <text class="t" x="420" y="181" text-anchor="middle">HTTP / WebSocket API</text>
+  <text class="s" x="420" y="198" text-anchor="middle">127.0.0.1 · bearer token · live agent-flow and topic streams</text>
+
+  <rect class="core" x="670" y="162" width="140" height="46" rx="8"/>
+  <text class="t" x="740" y="181" text-anchor="middle">broker.sock</text>
+  <text class="s" x="740" y="198" text-anchor="middle">JSONL requests</text>
+
+  <path class="arrow" d="M265,86 L265,160" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="arrow" d="M435,86 L435,160" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="arrow" d="M590,86 L590,160" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="arrow" d="M740,86 L740,160" marker-start="url(#a)" marker-end="url(#a)"/>
+
+  <rect class="box" x="40" y="232" width="880" height="104" rx="8"/>
+  <text class="t" x="60" y="256">Broker</text>
+  <text class="s" x="60" y="278">agents with unique @names · named #topics · subscriptions (wake / digest)</text>
+  <text class="s" x="60" y="298">routes DMs, topic posts, @mentions and child reports into agents' context</text>
+  <text class="s" x="60" y="318">per-agent wake queues · 1s debounce · lazy start · resume with pi --continue</text>
+  <text class="s" x="520" y="278">spawn / kill agent trees · @human is reserved</text>
+  <text class="s" x="520" y="298">final answers become reports to the parent</text>
+  <text class="s" x="520" y="318">activity feed + per-agent flow broadcast</text>
+  <path class="arrow" d="M420,210 L420,230" marker-end="url(#a)"/>
+  <path class="arrow" d="M740,210 L740,230" marker-end="url(#a)"/>
+
+  <rect class="box" x="40" y="352" width="880" height="52" rx="8"/>
+  <text class="t" x="60" y="373">Session directory</text>
+  <text class="s" x="190" y="373">append-only, fsync'd, replayed on restart</text>
+  <text class="m" x="60" y="393">events.jsonl · logs/&lt;topic|dm&gt;.jsonl · agents/&lt;id&gt;/pi/*.jsonl (transcript) · agents/&lt;id&gt;/rpc.jsonl</text>
+  <path class="arrow" d="M480,338 L480,350" marker-end="url(#a)"/>
+
+  <!-- pi agents -->
+  <path class="arrow" d="M180,424 L180,488" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="arrow" d="M480,424 L480,488" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="arrow" d="M780,424 L780,488" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text class="l" x="330" y="452" text-anchor="middle">pi --mode rpc · stdin/stdout JSONL</text>
+  <text class="l" x="330" y="468" text-anchor="middle">prompts in · events out</text>
+  <text class="l" x="630" y="452" text-anchor="middle">lazily started per agent</text>
+  <text class="l" x="630" y="468" text-anchor="middle">idle ones stay dormant</text>
+
+  <rect class="box" x="60" y="490" width="240" height="80" rx="8"/>
+  <text class="t" x="180" y="514" text-anchor="middle">pi agent · @lead</text>
+  <text class="s" x="180" y="534" text-anchor="middle">agentcord extension tools</text>
+  <text class="s" x="180" y="552" text-anchor="middle">+ pi tools (optional)</text>
+
+  <rect class="box" x="360" y="490" width="240" height="80" rx="8"/>
+  <text class="t" x="480" y="514" text-anchor="middle">pi agent · @alice</text>
+  <text class="s" x="480" y="534" text-anchor="middle">spawned by @lead</text>
+  <text class="s" x="480" y="552" text-anchor="middle">own pi session + model</text>
+
+  <rect class="box" x="660" y="490" width="240" height="80" rx="8"/>
+  <text class="t" x="780" y="514" text-anchor="middle">pi agent · …</text>
+  <text class="s" x="780" y="534" text-anchor="middle">any number, any depth</text>
+  <text class="s" x="780" y="552" text-anchor="middle">subscribed to #topics</text>
+
+  <!-- extension tool calls back into the broker socket -->
+  <path class="tool" d="M902,530 L946,530 L946,185 L812,185" marker-end="url(#b)"/>
+  <text class="tl" x="878" y="178" text-anchor="middle">tool calls</text>
+</svg>
