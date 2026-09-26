@@ -1,0 +1,6 @@
+/target
+/.agentcord
+.env
+.env.*
+!.env.example
+agentcord-discord-*.json
